@@ -1,0 +1,19 @@
+*{
+margin:0;
+padding:0;
+}
+
+.container{
+position: absolute;
+margin:100px 400px;
+border-radius:10px;
+background:violet;
+height:400px;
+width:250px;
+}
+
+.f{
+position: relative;
+top: 10px;
+left: 20px;
+}

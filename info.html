@@ -1,0 +1,163 @@
+<html>
+<nav id="exportContent">
+<style>
+h3 {
+background:rgb(63,60,65);
+color: rgb(253,253,253);
+}
+
+header {
+display:inline-block;
+background:rgb(60,63,65);
+color: rgb(253,253,253);
+width:100%;
+margin-bottom:20px;
+}
+
+h2{
+background:rgb(63,60,65);
+color: rgb(253,253,253);
+}
+
+img{
+border-radius:50%;height:200px;width:200px;
+}
+
+#intro{
+color:rgb(253,253,253);
+margin-top:50px;
+font-size:32px;text-decoration:underline;
+}
+</style>
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<script src="jquery-3.4.1.js"></script>
+<script src=popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<header>
+<div class="container">
+<div class="row no-gutters">
+<div class="col">
+<img id="image"></img></div>
+<div id="intro" class="col"></div>
+</div>
+</div>
+</header>
+<body>
+<div class="container">
+<h2>Education</h2>
+<div id="education" class="row">
+<div id="college" class="col">
+<h3>College</h3>
+</div>
+<div id="school" class="col">
+<h3>School</h3>
+</div>
+</div>
+<div id="experience">
+<h2>Experience</h2>
+</div>
+<h2>SKILLS</h2>
+<div id="skills" class="row">
+<div id="lang" class="col">
+<h3>Programming Languages</h3>
+<ul id="langl"></ul>
+</div>
+<div id="frame" class='col'>
+<h3>Frameworks</h3>
+<ul id="framel"></ul>
+</div>
+</div>
+<div id="personal">
+<h2>Personal Details</h2>
+</div>
+</div>
+</body>
+</nav>
+
+<script type="text/javascript">
+var x=localStorage.getItem('personal');
+let personal = JSON.parse(x);
+x=localStorage.getItem('company');
+let experience = JSON.parse(x);
+x=localStorage.getItem('school');
+let school = JSON.parse(x);
+x=localStorage.getItem('college');
+let college = JSON.parse(x);
+x=localStorage.getItem('language');
+let language = JSON.parse(x);
+x=localStorage.getItem('framework');
+let framework = JSON.parse(x);
+x=localStorage.getItem('cpi');
+let cpi = JSON.parse(x);
+x=localStorage.getItem('course');
+let course = JSON.parse(x);
+x=localStorage.getItem('company');
+let comp = JSON.parse(x);
+x=localStorage.getItem('job');
+let job = JSON.parse(x);
+x=localStorage.getItem('ref');
+let ref = JSON.parse(x);
+$("#image").attr("src",personal[0]);
+$("#intro").append(`${personal[1]}`);
+for(i=0;i<cpi.length;i++){
+$("#college").append(`<em>${course[i]}<br>${college[i]}<br>CPI : ${cpi[i]}<br><br>`);
+}
+for(i=0;i<language.length;i++){
+$("#langl").append(`<li>${language[i]}</li>`);
+}
+for(i=0;i<framework.length;i++){
+$("#framel").append(`<li>${framework[i]}</li>`);
+}
+$("#personal").append(`<em>Father's Name : ${personal[4]}<br>Mother's Name : ${personal[5]}<br>Blood Group : ${personal[6]}`);
+for(i=0;i<job.length;i++){
+$("#experience").append(`<em>Company : ${comp[i]}<br>Job : ${job[i]}<br>Reference : ${ref[i]}</em><br><br>`);
+}
+$("#school").append(`<h3>Higher Secondary</h3><em>${school[0]}<br>${school[1]} : ${school[2]}</em><br><br><h3>Senior Secondary</h3><em>${school[3]}<br>${school[4]} : ${school[5]}</em><br><br>`);
+
+</script>
+
+<script type="text/javascript" src="html2canvas.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.1/jspdf.min.js"></script>
+<script type="text/javascript">
+function Export2Doc(element, filename = ''){
+    var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+    var postHtml = "</body></html>";
+    var html = preHtml+document.getElementById(element).innerHTML+postHtml;
+
+    var blob = new Blob(['\ufeff', html], {
+        type: 'application/msword'
+    });
+    
+    // Specify link url
+    var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+    
+    // Specify file name
+    filename = filename?filename+'.doc':'document.doc';
+    
+    // Create download link element
+    var downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob ){
+        navigator.msSaveOrOpenBlob(blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = url;
+        
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+    
+    document.body.removeChild(downloadLink);
+}
+function print() {
+
+}
+</script>
+<button id="1" onclick="Export2Doc('exportContent');">Export as .doc</button><br>
+<button id="1" onclick="print();">Export as .pdf</button>
+</html>

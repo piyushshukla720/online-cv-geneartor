@@ -1,0 +1,43 @@
+*{
+margin:0;
+padding:0;
+}
+
+body{
+background-color: #f5f5f5;
+background-size: cover;
+}
+
+/*.container{
+position: absolute;
+margin:100px 400px;
+border-radius:10px;
+height:400px;
+width:250px;
+background: violet;
+opacity: 0.8;
+}*/
+
+.form{
+position: relative;
+top: 50px;
+left: 30px;
+}
+
+.i{
+background: lightblue;
+border-radius: 8px;
+}
+
+/*.b{
+background: blue;
+border-radius: 4px;
+box-shadow: 2px 2px 2px blue;
+border: 2px solid blue;
+}*/
+
+.h{
+/*color: white;*/ 
+margin-top: 40px;
+margin-left: 40px;
+}
